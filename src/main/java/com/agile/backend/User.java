@@ -16,7 +16,6 @@ public class User {
     private String password;
 
     // Constructors
-
     public User() {
         // Default constructor required by JPA
     }
@@ -26,8 +25,7 @@ public class User {
         this.password = password;
     }
 
-    // Getters and Setters
-
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -50,16 +48,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    // toString method (optional but useful for debugging)
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }
