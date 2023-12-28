@@ -1,25 +1,29 @@
 package com.agile.backend;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 public class RegistrationController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository;  // Autowire the repository
 
     @PostMapping("/register")
     public String register(@RequestBody User user) {
-        // Check if the username already exists
-        if (userRepository.existsByUsername(user.getUsername())) {
-            return "Username already exists. Please choose a different one.";
-        }
-
         // Save the user data to the RDS MySQL database
-        userRepository.save(user);
+        userRepository.save(user);  // Save the user using the repository
 
-        return "Registration successful!";
+        // Redirect to the welcome page after successful registration
+        return "redirect:/welcome";
+    }
+
+    @RequestMapping("/welcome")
+    public String welcomePage() {
+        // Return the name of the welcome HTML file (without the extension)
+        return "welcome";
     }
 }
